@@ -1,18 +1,12 @@
+name: CICD - Branch
 on:
-  workflow_call:
+  push:
+    branches-ignore:
+      - 'main'
 
+  workflow_dispatch:
 jobs:
-  build:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+  reuse:
+    uses: raghudevopsb85/roboshop-github-actions/.github/workflows/ci-branch.yml@main
 
-  test:
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+
