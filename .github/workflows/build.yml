@@ -6,12 +6,18 @@ on:
         type: string
 
 jobs:
+  dummy:
+    runs-on: self-hosted
+    steps:
+      - name: Call
+        run: echo
+
   java:
     runs-on: self-hosted
     if: inputs.app_type == 'java'
     steps:
       - uses: actions/checkout@v4
-      - name: Run a one-line script
+      - name: Maven Package
         run: |
           mvn package
 
