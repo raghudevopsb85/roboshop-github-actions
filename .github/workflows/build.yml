@@ -14,18 +14,20 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-  nodejs:
-    runs-on: self-hosted
-    if: inputs.app_type == 'nodejs'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+# Python and NodeJS does not have anything to do at Build Phase
 
-  python:
-    runs-on: self-hosted
-    if: inputs.app_type == 'python'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
+#   nodejs:
+#     runs-on: self-hosted
+#     if: inputs.app_type == 'nodejs'
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Run a one-line script
+#         run: echo Hello, world!
+#
+#   python:
+#     runs-on: self-hosted
+#     if: inputs.app_type == 'python'
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Run a one-line script
+#         run: echo Hello, world!
