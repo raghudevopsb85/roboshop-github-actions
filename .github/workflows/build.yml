@@ -15,8 +15,6 @@ jobs:
         run: |
           mvn package
 
-# Python and NodeJS does not have anything to do at Build Phase
-
 #   nodejs:
 #     runs-on: self-hosted
 #     if: inputs.app_type == 'nodejs'
