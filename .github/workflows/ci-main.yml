@@ -6,11 +6,11 @@ on:
         type: string
 
 jobs:
-  build:
-    uses: raghudevopsb85/roboshop-github-actions/.github/workflows/build.yml@main
-#     with:
-#       app_type: nodejs
-
+#   build:
+#     uses: raghudevopsb85/roboshop-github-actions/.github/workflows/build.yml@main
+# #     with:
+# #       app_type: nodejs
+#
 
   test:
     runs-on: self-hosted
