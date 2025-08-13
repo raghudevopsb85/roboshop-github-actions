@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: |
+          mvn package
 
 # Python and NodeJS does not have anything to do at Build Phase
 
