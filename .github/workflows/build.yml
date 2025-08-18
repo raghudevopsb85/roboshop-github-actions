@@ -6,20 +6,19 @@ on:
         type: string
 
 jobs:
-  dummy:
+  docker-build-push:
     runs-on: self-hosted
-    steps:
-      - name: Call
-        run: echo
-
-  java:
-    runs-on: self-hosted
-    if: inputs.app_type == 'java'
     steps:
       - uses: actions/checkout@v4
-      - name: Maven Package
+      - name: Download Dependencies
         run: |
-          mvn package
+          if [ ${inputs.app_type} == "java" ]; then
+            mvn package
+          fi
+      - name: Docker Build
+        run: |
+          docker build .
+
 
 # Python and NodeJS does not have anything to do at Build Phase
 
