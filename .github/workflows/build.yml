@@ -4,6 +4,9 @@ on:
       app_type:
         required: true
         type: string
+      app_name:
+        required: true
+        type: string
 
 jobs:
   docker-build-push:
@@ -17,7 +20,9 @@ jobs:
           fi
       - name: Docker Build
         run: |
-          docker build .
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 739561048503.dkr.ecr.us-east-1.amazonaws.com
+          docker build -t 739561048503.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA} .
+          docker push 739561048503.dkr.ecr.us-east-1.amazonaws.com/${{inputs.app_name}}:${GITHUB_SHA}
 
 
 # Python and NodeJS does not have anything to do at Build Phase
