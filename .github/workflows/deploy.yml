@@ -19,5 +19,7 @@ jobs:
           path: 'helm'
       - name: Deploy
         run: |
+          cd helm
+          ls -l
           echo ${GITHUB_SHA}
 
