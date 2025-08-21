@@ -25,7 +25,7 @@ jobs:
     uses: raghudevopsb85/roboshop-github-actions/.github/workflows/deploy.yml@main
     needs: build
     with:
-      app_type: ${{ inputs.app_type }}
+      app_name: ${{ inputs.app_type }}
       app_env: dev
 
   qa-deploy:
