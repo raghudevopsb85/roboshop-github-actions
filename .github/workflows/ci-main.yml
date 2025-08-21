@@ -22,7 +22,8 @@ jobs:
       app_name: ${{ inputs.app_name }}
 
   dev-deploy:
-    uses: raghudevopsb85/roboshop-github-actions/.github/workflows/unit-test.yml@main
+    uses: raghudevopsb85/roboshop-github-actions/.github/workflows/deploy.yml@main
+    needs: build
     with:
       app_type: ${{ inputs.app_type }}
 
