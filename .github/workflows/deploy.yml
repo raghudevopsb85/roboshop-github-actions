@@ -17,9 +17,16 @@ jobs:
         with:
           repository: 'raghudevopsb85/roboshop-helm'
           path: 'helm'
+#       - name: Deploy
+#         run: |
+#           cd helm
+#           aws eks update-kubeconfig --name dev
+#           helm upgrade -i ${{ inputs.app_name }} . -f env-${{ inputs.app_env }}/${{ inputs.app_name }}.yml --set imageTag=${GITHUB_SHA}
       - name: Deploy
         run: |
           cd helm
           aws eks update-kubeconfig --name dev
-          helm upgrade -i ${{ inputs.app_name }} . -f env-${{ inputs.app_env }}/${{ inputs.app_name }}.yml --set imageTag=${GITHUB_SHA}
+          argocd login argocd-dev.rdevopsb85.online --insecure --username admin --password $(kubectl get secrets -n tools argocd-initial-admin-secret -o=jsonpath='{.data.password}' |base64 -d) --grpc-web
+          argocd app create ${{ inputs.app_name }} --repo https://github.com/raghudevopsb85/roboshop-helm --path . --dest-namespace default --dest-server https://kubernetes.default.svc --values env-dev/${{ inputs.app_name }}.yml --helm-set imageTag=${GITHUB_SHA}
+
 
